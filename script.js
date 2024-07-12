@@ -11,7 +11,22 @@ const materials = {
     glass: { name: "玻璃", density: 2500, price: 15 }
 };
 
-// 当页面加载时初始化材料选择
+// 澳大利亚供应商数据
+const suppliers = {
+    steel: {
+        NSW: ["BlueScope Steel", "OneSteel"],
+        VIC: ["Liberty OneSteel", "Australian Steel Company"],
+        QLD: ["Steelforce", "ShapeCUT"],
+        WA: ["Midalia Steel", "InfraBuild"],
+        SA: ["Axiom Steel", "Steel Supplies"],
+        TAS: ["TasSteel", "Metalco Tasmania"],
+        NT: ["NT Steel Supplies", "Top End Steel"],
+        ACT: ["Capital Steel", "ACT Steel Suppliers"]
+    },
+    // 为其他材料添加类似的供应商信息
+};
+
+// 当页面加载时初始化材料选择和州选择
 document.addEventListener('DOMContentLoaded', function() {
     const materialSelect = document.getElementById('material');
     for (let key in materials) {
@@ -20,6 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
         option.textContent = materials[key].name;
         materialSelect.appendChild(option);
     }
+
+    const stateSelect = document.getElementById('state');
+    const states = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT", "ACT"];
+    states.forEach(state => {
+        let option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    });
 });
 
 // 当选择材料时更新密度和单价
@@ -39,6 +63,7 @@ document.getElementById('quote-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const material = document.getElementById('material').value;
+    const state = document.getElementById('state').value;
     const density = parseFloat(document.getElementById('density').value);
     const price = parseFloat(document.getElementById('price').value);
     const length = parseFloat(document.getElementById('length').value);
@@ -46,17 +71,24 @@ document.getElementById('quote-form').addEventListener('submit', function(e) {
     const height = parseFloat(document.getElementById('height').value);
     const quantity = parseInt(document.getElementById('quantity').value);
 
-    if (material && density && price && length && width && height && quantity) {
+    if (material && state && density && price && length && width && height && quantity) {
         const volume = length * width * height;
         const weight = volume * density;
         const totalPrice = weight * price * quantity / 1000000; // 转换为立方米和吨
 
+        let supplierInfo = '';
+        if (suppliers[material] && suppliers[material][state]) {
+            supplierInfo = `<p>推荐供应商：${suppliers[material][state].join(', ')}</p>`;
+        }
+
         document.getElementById('result').innerHTML = `
             <h2>报价结果</h2>
             <p>材料：${materials[material].name}</p>
+            <p>州：${state}</p>
             <p>体积：${volume.toFixed(4)} m³</p>
             <p>重量：${(weight / 1000).toFixed(2)} kg</p>
             <p>总价：${totalPrice.toFixed(2)} 元</p>
+            ${supplierInfo}
         `;
     } else {
         document.getElementById('result').innerHTML = '<p>请填写所有字段</p>';
