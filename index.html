@@ -131,6 +131,7 @@
             weight: "重量：",
             totalPrice: "总价：",
             fillAllFields: "请填写所有字段",
+            id: "唯一ID：",
             copyright: "保留所有权利"
         },
         en: {
@@ -154,6 +155,7 @@
             weight: "Weight:",
             totalPrice: "Total Price:",
             fillAllFields: "Please fill all fields",
+            id: "Unique ID:",
             copyright: "All rights reserved"
         }
     };
@@ -164,6 +166,9 @@
         aluminum: { name: { zh: "铝", en: "Aluminum" }, density: 2700, price: 15 },
         copper: { name: { zh: "铜", en: "Copper" }, density: 8960, price: 50 },
         brass: { name: { zh: "黄铜", en: "Brass" }, density: 8500, price: 40 },
+        titanium: { name: { zh: "钛", en: "Titanium" }, density: 4500, price: 100 },
+        plastic: { name: { zh: "塑料", en: "Plastic" }, density: 950, price: 10 },
+        wood: { name: { zh: "木材", en: "Wood" }, density: 600, price: 8 }
     };
 
     const suppliers = {
@@ -180,153 +185,211 @@
         stainlessSteel: {
             NSW: ["Atlas Specialty Metals", "Midway Metals", "Stainless Tube Mills"],
             VIC: ["Dalsteel Metals", "Australian Stainless Distributors", "Stainless Steel Products"],
-            QLD: ["ASSDA", "Austral Wright Metals", "Stainless Metals"],
-            WA: ["West Australian Stainless", "Stirling Stainless", "Perth Stainless Steel"],
-            SA: ["Stainless Steel Plus", "Adelaide Stainless", "Statewide Stainless"],
-            TAS: ["Tasmanian Stainless", "Hobart Stainless", "Launceston Stainless"],
-            NT: ["Darwin Stainless", "Top End Stainless", "NT Stainless"],
-            ACT: ["Canberra Stainless", "ACT Stainless Suppliers", "Capital Stainless"]
+            QLD: ["NSS Products", "QSM Fabrication", "Fagersta Steels"],
+            WA: ["Stainless Products", "Glenelg Stainless Steel", "Specialty Metals"],
+            SA: ["Assda", "Stainless Fabricators", "ADL Metal"],
+            TAS: ["Stainless Tasmania", "Specialty Stainless", "Metal Manufacturers Tasmania"],
+            NT: ["Northern Stainless", "NT Metal Supplies", "Steel Plus"],
+            ACT: ["Canberra Stainless", "Metal Centre", "Specialty Stainless ACT"]
         },
         aluminum: {
-            NSW: ["Capral Aluminium", "G.James Glass & Aluminium", "Alspec"],
-            VIC: ["Aluminium Specialties Group", "Alucobond Architectural", "Onesteel Aluminium"],
-            QLD: ["Aluminium Industries of Australia", "Ullrich Aluminium", "Queensland Aluminium"],
-            WA: ["Aluminium Distributors", "Comalco Aluminium", "Perth Aluminium"],
-            SA: ["Altec Aluminium", "Adelaide Aluminium", "SA Aluminium"],
-            TAS: ["Tasmanian Aluminium", "Hobart Aluminium", "Launceston Aluminium"],
-            NT: ["Territory Aluminium", "Darwin Aluminium Supplies", "NT Aluminium"],
-            ACT: ["ACT Aluminium", "Canberra Aluminium", "Capital Aluminium"]
+            NSW: ["Capral Aluminium", "Ullrich Aluminium", "Alsun Aluminium"],
+            VIC: ["Aluminium Trade Centre", "Alltrade Aluminium", "Edcon Steel"],
+            QLD: ["Darley Aluminium", "QIS Aluminium", "Capricorn Aluminium"],
+            WA: ["Balustrade WA", "Alspec", "Aluminium Supplier Perth"],
+            SA: ["SA Aluminium", "Adelaide Aluminium Suppliers", "Specialty Metals"],
+            TAS: ["Tasman Aluminium", "Statewide Aluminium", "Metal Manufacturers Tasmania"],
+            NT: ["Top End Aluminium", "NT Aluminium Supplies", "Darwin Aluminium"],
+            ACT: ["Canberra Aluminium", "Specialty Metals", "Capital Aluminium"]
         },
         copper: {
-            NSW: ["Austral Wright Metals", "Metal Manufacturers Limited", "Sims Metal Management"],
-            VIC: ["Atlas Specialty Metals", "Copper Industries", "Metal Distributors"],
-            QLD: ["Copper Refineries", "Queensland Copper", "Brisbane Metal Traders"],
-            WA: ["West Coast Copper", "Perth Copper", "WA Copper Solutions"],
-            SA: ["Adelaide Copper", "SA Copper Suppliers", "Copper SA"],
-            TAS: ["Tasmanian Copper", "Hobart Copper", "Launceston Copper"],
-            NT: ["Darwin Copper", "NT Copper Suppliers", "Top End Copper"],
-            ACT: ["Canberra Copper", "ACT Copper", "Capital Copper"]
+            NSW: ["MM Kembla", "Reece", "Tradelink"],
+            VIC: ["Alltrade Copper", "Victorian Copper", "Metal Manufactures"],
+            QLD: ["Capricorn Copper", "Copper Supplies Queensland", "Metal Centre"],
+            WA: ["Copper Products", "WA Copper Suppliers", "Metal Suppliers Perth"],
+            SA: ["SA Copper", "Adelaide Copper Supplies", "Copper Sheet Metal"],
+            TAS: ["TasCopper", "Statewide Copper", "Metal Manufactures Tasmania"],
+            NT: ["NT Copper Supplies", "Top End Copper", "Darwin Copper"],
+            ACT: ["Canberra Copper", "Specialty Metals", "Metal Centre ACT"]
         },
         brass: {
-            NSW: ["Austral Wright Metals", "Alro Metals", "Sims Metal Management"],
-            VIC: ["Atlas Specialty Metals", "Victorian Brass", "Bronzework"],
-            QLD: ["Queensland Brass", "Brisbane Metal Traders", "Gold Coast Brass"],
-            WA: ["Perth Brass", "WA Brass Suppliers", "Brass Monkey"],
-            SA: ["Adelaide Brass", "SA Brass", "Brass Industries SA"],
-            TAS: ["Tasmanian Brass", "Hobart Brass", "Launceston Brass"],
-            NT: ["Darwin Brass", "NT Brass Suppliers", "Top End Brass"],
-            ACT: ["Canberra Brass", "ACT Brass", "Capital Brass"]
+            NSW: ["Brass & Copper Sales", "Reece", "Tradelink"],
+            VIC: ["Victorian Brass", "Brass Specialties", "Metal Manufactures"],
+            QLD: ["Capricorn Brass", "Brass Supplies Queensland", "Metal Centre"],
+            WA: ["Brass Products", "WA Brass Suppliers", "Metal Suppliers Perth"],
+            SA: ["SA Brass", "Adelaide Brass Supplies", "Brass Sheet Metal"],
+            TAS: ["TasBrass", "Statewide Brass", "Metal Manufactures Tasmania"],
+            NT: ["NT Brass Supplies", "Top End Brass", "Darwin Brass"],
+            ACT: ["Canberra Brass", "Specialty Metals", "Metal Centre ACT"]
+        },
+        titanium: {
+            NSW: ["Australian Titanium", "Specialty Metals", "Titanium Industries"],
+            VIC: ["Victorian Titanium", "Titanium Products", "Specialty Metals"],
+            QLD: ["Capricorn Titanium", "Titanium Supplies Queensland", "Metal Centre"],
+            WA: ["Titanium Products", "WA Titanium Suppliers", "Metal Suppliers Perth"],
+            SA: ["SA Titanium", "Adelaide Titanium Supplies", "Titanium Sheet Metal"],
+            TAS: ["TasTitanium", "Statewide Titanium", "Metal Manufactures Tasmania"],
+            NT: ["NT Titanium Supplies", "Top End Titanium", "Darwin Titanium"],
+            ACT: ["Canberra Titanium", "Specialty Metals", "Metal Centre ACT"]
+        },
+        plastic: {
+            NSW: ["Plastic Center", "Tradelink", "Bunnings"],
+            VIC: ["Victorian Plastic", "Plastic Products", "Plastic Centre"],
+            QLD: ["Capricorn Plastic", "Plastic Supplies Queensland", "Metal Centre"],
+            WA: ["Plastic Products", "WA Plastic Suppliers", "Metal Suppliers Perth"],
+            SA: ["SA Plastic", "Adelaide Plastic Supplies", "Plastic Sheet Metal"],
+            TAS: ["TasPlastic", "Statewide Plastic", "Metal Manufactures Tasmania"],
+            NT: ["NT Plastic Supplies", "Top End Plastic", "Darwin Plastic"],
+            ACT: ["Canberra Plastic", "Specialty Metals", "Metal Centre ACT"]
+        },
+        wood: {
+            NSW: ["Wood Center", "Tradelink", "Bunnings"],
+            VIC: ["Victorian Wood", "Wood Products", "Wood Centre"],
+            QLD: ["Capricorn Wood", "Wood Supplies Queensland", "Metal Centre"],
+            WA: ["Wood Products", "WA Wood Suppliers", "Metal Suppliers Perth"],
+            SA: ["SA Wood", "Adelaide Wood Supplies", "Wood Sheet Metal"],
+            TAS: ["TasWood", "Statewide Wood", "Metal Manufactures Tasmania"],
+            NT: ["NT Wood Supplies", "Top End Wood", "Darwin Wood"],
+            ACT: ["Canberra Wood", "Specialty Metals", "Metal Centre ACT"]
         }
     };
 
-    function switchLanguage() {
-        currentLang = currentLang === 'zh' ? 'en' : 'zh';
-        updateLanguage();
-    }
+    const states = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT", "ACT"];
 
-    function updateLanguage() {
-        document.querySelectorAll('[data-translate]').forEach(element => {
-            const key = element.getAttribute('data-translate');
-            element.textContent = translations[currentLang][key];
-        });
-
-        document.title = translations[currentLang].title;
-        document.querySelector('h1').textContent = translations[currentLang].title;
-        document.querySelector('button[type="submit"]').textContent = translations[currentLang].calculate;
-        document.querySelector('footer p').textContent = `© 2024 ${translations[currentLang].title}. ${translations[currentLang].copyright}.`;
-
-        updateMaterialOptions();
-        updateStateOptions();
-        updateSupplierOptions();
-    }
-
-    function updateMaterialOptions() {
+    function populateMaterials() {
         const materialSelect = document.getElementById('material');
-        materialSelect.innerHTML = `<option value="">${translations[currentLang].pleaseSelect}</option>`;
-        for (let key in materials) {
-            let option = document.createElement('option');
-            option.value = key;
-            option.textContent = materials[key].name[currentLang];
+        Object.keys(materials).forEach(materialKey => {
+            const material = materials[materialKey];
+            const option = document.createElement('option');
+            option.value = materialKey;
+            option.text = material.name[currentLang];
             materialSelect.appendChild(option);
-        }
+        });
     }
 
-    function updateStateOptions() {
+    function populateStates() {
         const stateSelect = document.getElementById('state');
-        stateSelect.innerHTML = `<option value="">${translations[currentLang].pleaseSelect}</option>`;
-        const states = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT", "ACT"];
         states.forEach(state => {
-            let option = document.createElement('option');
+            const option = document.createElement('option');
             option.value = state;
-            option.textContent = state;
+            option.text = state;
             stateSelect.appendChild(option);
         });
     }
 
-    function updateSupplierOptions() {
+    function updateSuppliers() {
+        const materialKey = document.getElementById('material').value;
+        const stateKey = document.getElementById('state').value;
         const supplierSelect = document.getElementById('supplier');
-        supplierSelect.innerHTML = `<option value="">${translations[currentLang].pleaseSelect}</option>`;
-        const material = document.getElementById('material').value;
-        const state = document.getElementById('state').value;
-        if (material && state && suppliers[material] && suppliers[material][state]) {
-            suppliers[material][state].forEach(supplier => {
-                let option = document.createElement('option');
+        supplierSelect.innerHTML = '';
+        if (materialKey && stateKey) {
+            suppliers[materialKey][stateKey].forEach(supplier => {
+                const option = document.createElement('option');
                 option.value = supplier;
-                option.textContent = supplier;
+                option.text = supplier;
                 supplierSelect.appendChild(option);
             });
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        updateLanguage();
+    function updateDensityAndPrice() {
+        const materialKey = document.getElementById('material').value;
+        if (materialKey) {
+            const densityInput = document.getElementById('density');
+            const priceInput = document.getElementById('price');
+            densityInput.value = materials[materialKey].density;
+            priceInput.value = materials[materialKey].price;
+        }
+    }
 
-        document.getElementById('material').addEventListener('change', function() {
-            const material = materials[this.value];
-            if (material) {
-                document.getElementById('density').value = material.density;
-                document.getElementById('price').value = material.price;
-            } else {
-                document.getElementById('density').value = '';
-                document.getElementById('price').value = '';
-            }
-            updateSupplierOptions();
+    function switchLanguage() {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        document.querySelectorAll('[lang-switch]').forEach(element => {
+            element.textContent = translations[currentLang][element.getAttribute('lang-switch')];
         });
+        document.title = translations[currentLang].title;
+    }
 
-        document.getElementById('state').addEventListener('change', updateSupplierOptions);
+    document.getElementById('quote-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const materialKey = document.getElementById('material').value;
+        const stateKey = document.getElementById('state').value;
+        const supplier = document.getElementById('supplier').value;
+        const density = parseFloat(document.getElementById('density').value);
+        const price = parseFloat(document.getElementById('price').value);
+        const length = parseFloat(document.getElementById('length').value);
+        const width = parseFloat(document.getElementById('width').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const quantity = parseInt(document.getElementById('quantity').value);
 
-        document.getElementById('quote-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        if (materialKey && stateKey && supplier && density && price && length && width && height && quantity) {
+            const volume = length * width * height;
+            const weight = volume * density;
+            const totalPrice = weight * price * quantity;
 
-            const material = document.getElementById('material').value;
-            const state = document.getElementById('state').value;
-            const supplier = document.getElementById('supplier').value;
-            const density = parseFloat(document.getElementById('density').value);
-            const price = parseFloat(document.getElementById('price').value);
-            const length = parseFloat(document.getElementById('length').value);
-            const width = parseFloat(document.getElementById('width').value);
-            const height = parseFloat(document.getElementById('height').value);
-            const quantity = parseInt(document.getElementById('quantity').value);
+            const uniqueId = generateUniqueId();
 
-            if (material && state && supplier && density && price && length && width && height && quantity) {
-                const volume = length * width * height;
-                const weight = volume * density;
-                const totalPrice = weight * price * quantity / 1000000; // 转换为立方米和吨
+            saveResult(uniqueId, {
+                material: materials[materialKey].name[currentLang],
+                state: stateKey,
+                supplier,
+                volume,
+                weight,
+                totalPrice
+            });
 
-                document.getElementById('result').innerHTML = `
-                    <h2>${translations[currentLang].results}</h2>
-                    <p>${translations[currentLang].material} ${materials[material].name[currentLang]}</p>
-                    <p>${translations[currentLang].state} ${state}</p>
-                    <p>${translations[currentLang].supplier} ${supplier}</p>
-                    <p>${translations[currentLang].volume} ${volume.toFixed(4)} m³</p>
-                    <p>${translations[currentLang].weight} ${(weight / 1000).toFixed(2)} kg</p>
-                    <p>${translations[currentLang].totalPrice} ${totalPrice.toFixed(2)} ${currentLang === 'zh' ? '元' : 'Yuan'}</p>
-                `;
-            } else {
-                document.getElementById('result').innerHTML = `<p>${translations[currentLang].fillAllFields}</p>`;
-            }
-        });
+            displayResult(uniqueId, {
+                material: materials[materialKey].name[currentLang],
+                state: stateKey,
+                supplier,
+                volume,
+                weight,
+                totalPrice
+            });
+        } else {
+            alert(translations[currentLang].fillAllFields);
+        }
     });
-    </script>
-</body>
-</html>
+
+    function generateUniqueId() {
+        const lastId = localStorage.getItem('lastId') || 'MT00';
+        const newId = `MT${(parseInt(lastId.slice(2)) + 1).toString().padStart(2, '0')}`;
+        localStorage.setItem('lastId', newId);
+        return newId;
+    }
+
+    function saveResult(id, result) {
+        const results = JSON.parse(localStorage.getItem('results')) || {};
+        results[id] = result;
+        localStorage.setItem('results', JSON.stringify(results));
+    }
+
+    function displayResult(id, result) {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <h2>${translations[currentLang].results}</h2>
+            <p>${translations[currentLang].id} ${id}</p>
+            <p>${translations[currentLang].material} ${result.material}</p>
+            <p>${translations[currentLang].state} ${result.state}</p>
+            <p>${translations[currentLang].supplier} ${result.supplier}</p>
+            <p>${translations[currentLang].volume} ${result.volume.toFixed(4)} m³</p>
+            <p>${translations[currentLang].weight} ${result.weight.toFixed(2)} kg</p>
+            <p>${translations[currentLang].totalPrice} $${result.totalPrice.toFixed(2)}</p>
+        `;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        populateMaterials();
+        populateStates();
+
+        document.getElementById('material').addEventListener('change', function () {
+            updateSuppliers();
+            updateDensityAndPrice();
+        });
+
+        document.getElementById('state').addEventListener('change', updateSuppliers);
+
+        document.getElementById('lang-switch').addEventListener('click', switchLanguage);
+    });
+</script>
+
