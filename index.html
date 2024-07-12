@@ -14,12 +14,8 @@
     <main>
         <form id="quote-form">
             <label for="material">选择材料：</label>
-            <select id="material" name="material">
+            <select id="material" name="material" required>
                 <option value="">请选择材料</option>
-                <option value="steel">钢</option>
-                <option value="aluminum">铝</option>
-                <option value="copper">铜</option>
-                <option value="plastic">塑料</option>
             </select>
 
             <label for="density">密度 (kg/m³)：</label>
@@ -29,13 +25,13 @@
             <input type="number" id="price" name="price" readonly>
 
             <label for="length">长度 (m)：</label>
-            <input type="number" id="length" name="length" step="0.01" required>
+            <input type="number" id="length" name="length" step="0.0001" required>
 
             <label for="width">宽度 (m)：</label>
-            <input type="number" id="width" name="width" step="0.01" required>
+            <input type="number" id="width" name="width" step="0.0001" required>
 
             <label for="height">高度 (m)：</label>
-            <input type="number" id="height" name="height" step="0.01" required>
+            <input type="number" id="height" name="height" step="0.0001" required>
 
             <label for="quantity">数量：</label>
             <input type="number" id="quantity" name="quantity" required>
