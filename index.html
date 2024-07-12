@@ -311,3 +311,22 @@
             if (material && state && supplier && density && price && length && width && height && quantity) {
                 const volume = length * width * height;
                 const weight = volume * density;
+                const totalPrice = weight * price * quantity / 1000000; // 转换为立方米和吨
+
+                document.getElementById('result').innerHTML = `
+                    <h2>${translations[currentLang].results}</h2>
+                    <p>${translations[currentLang].material} ${materials[material].name[currentLang]}</p>
+                    <p>${translations[currentLang].state} ${state}</p>
+                    <p>${translations[currentLang].supplier} ${supplier}</p>
+                    <p>${translations[currentLang].volume} ${volume.toFixed(4)} m³</p>
+                    <p>${translations[currentLang].weight} ${(weight / 1000).toFixed(2)} kg</p>
+                    <p>${translations[currentLang].totalPrice} ${totalPrice.toFixed(2)} ${currentLang === 'zh' ? '元' : 'Yuan'}</p>
+                `;
+            } else {
+                document.getElementById('result').innerHTML = `<p>${translations[currentLang].fillAllFields}</p>`;
+            }
+        });
+    });
+    </script>
+</body>
+</html>
