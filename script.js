@@ -25,7 +25,18 @@ const suppliers = {
         NT: ["NT Steel Supplies", "Top End Steel"],
         ACT: ["Capital Steel", "ACT Steel Suppliers"]
     },
-    // 为其他材料添加类似的供应商信息
+    // 为其他材料添加示例供应商信息
+    aluminum: {
+        NSW: ["Capral Aluminium", "G.James Glass & Aluminium"],
+        VIC: ["Alspec", "Aluminium Specialties Group"],
+        QLD: ["Aluminium Industries of Australia", "Ullrich Aluminium"],
+        WA: ["Aluminium Distributors", "Comalco Aluminium"],
+        SA: ["Alucobond Architectural", "Altec Aluminium"],
+        TAS: ["Tasmanian Aluminium", "Hobart Aluminium"],
+        NT: ["Territory Aluminium", "Darwin Aluminium Supplies"],
+        ACT: ["ACT Aluminium", "Canberra Aluminium"]
+    }
+    // 可以继续为其他材料添加供应商信息
 };
 
 // 当页面加载时初始化材料选择和州选择
@@ -79,9 +90,9 @@ document.getElementById('quote-form').addEventListener('submit', function(e) {
         const weight = volume * density;
         const totalPrice = weight * price * quantity / 1000000; // 转换为立方米和吨
 
-        let supplierInfo = '';
+        let supplierInfo = '没有该材料在此州的供应商信息';
         if (suppliers[material] && suppliers[material][state]) {
-            supplierInfo = `<p>推荐供应商：${suppliers[material][state].join(', ')}</p>`;
+            supplierInfo = `推荐供应商：${suppliers[material][state].join(', ')}`;
         }
 
         document.getElementById('result').innerHTML = `
@@ -91,7 +102,7 @@ document.getElementById('quote-form').addEventListener('submit', function(e) {
             <p>体积：${volume.toFixed(4)} m³</p>
             <p>重量：${(weight / 1000).toFixed(2)} kg</p>
             <p>总价：${totalPrice.toFixed(2)} 元</p>
-            ${supplierInfo}
+            <p>${supplierInfo}</p>
         `;
     } else {
         document.getElementById('result').innerHTML = '<p>请填写所有字段</p>';
