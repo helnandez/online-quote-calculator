@@ -1,3 +1,5 @@
+console.log("Script is running");
+
 // 材料数据
 const materials = {
     steel: { name: "钢", density: 7850, price: 5 },
@@ -28,6 +30,7 @@ const suppliers = {
 
 // 当页面加载时初始化材料选择和州选择
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM Content Loaded");
     const materialSelect = document.getElementById('material');
     for (let key in materials) {
         let option = document.createElement('option');
